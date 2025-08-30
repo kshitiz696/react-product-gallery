@@ -1,28 +1,28 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState("light");
 
-  // Load theme from localStorage
+  // On mount, load theme from localStorage or default
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
       setTheme(storedTheme);
-      document.documentElement.classList.add(storedTheme);
     }
   }, []);
 
-  // Update theme + persist
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.remove("light", "dark"); // clear both
+    root.classList.add(theme);
+
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-
-    document.documentElement.classList.remove(theme);
-    document.documentElement.classList.add(newTheme);
-
-    localStorage.setItem("theme", newTheme);
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   return (

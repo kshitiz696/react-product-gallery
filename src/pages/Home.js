@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useContext, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useRef,
+  useCallback,
+} from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import SearchBar from "../components/SearchBar";
 import ProductList from "../components/ProductList";
@@ -10,15 +16,14 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearch = useDebounce(searchTerm, 500);
 
-  const [allProducts, setAllProducts] = useState([]);   // all fetched products
-  const [visibleProducts, setVisibleProducts] = useState([]); // products shown
+  const [allProducts, setAllProducts] = useState([]);
+  const [visibleProducts, setVisibleProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const observer = useRef();
 
-  // Fetch all products once
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -29,7 +34,7 @@ const Home = () => {
         setVisibleProducts(res.data.slice(0, 6)); // show first 6 initially
       } catch (err) {
         console.error("Error fetching products", err);
-        setError("⚠️ Failed to load products. Please try again.");
+        setError(" Failed to load products. Please try again.");
       }
       setLoading(false);
     };
@@ -86,14 +91,14 @@ const Home = () => {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       {/* Header */}
       <header className="sticky top-0 z-10 bg-white dark:bg-gray-800 shadow-md p-4 flex flex-col md:flex-row justify-between items-center gap-4">
-        <h1 className="text-xl font-bold">🛍️ Product Gallery</h1>
+        <h1 className="text-xl font-bold"> Product Gallery</h1>
         <div className="flex items-center gap-4 w-full md:w-auto">
           <SearchBar onSearch={setSearchTerm} />
           <button
             onClick={toggleTheme}
             className="px-4 py-2 rounded bg-blue-500 text-white dark:bg-yellow-500"
           >
-            {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+            {theme === "light" ? " Dark" : " Light"}
           </button>
         </div>
       </header>

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -17,7 +17,7 @@ const ProductDetails = () => {
         setProduct(res.data);
       } catch (err) {
         console.error("Error fetching product:", err);
-        setError("⚠️ Failed to load product details. Please try again.");
+        setError(" Failed to load product details. Please try again.");
       }
       setLoading(false);
     };
@@ -31,7 +31,9 @@ const ProductDetails = () => {
 
   return (
     <div className="p-6 max-w-2xl mx-auto">
-      <Link to="/" className="text-blue-500 hover:underline">← Back</Link>
+      <Link to="/" className="text-blue-500 hover:underline">
+        ← Back
+      </Link>
 
       <div className="mt-6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
         <img
@@ -43,7 +45,9 @@ const ProductDetails = () => {
         <p className="text-gray-600 dark:text-gray-300 mb-4">
           {product.description}
         </p>
-        <p className="text-lg font-bold text-green-600 mb-2">${product.price}</p>
+        <p className="text-lg font-bold text-green-600 mb-2">
+          ${product.price}
+        </p>
         <p className="italic">Category: {product.category}</p>
       </div>
     </div>

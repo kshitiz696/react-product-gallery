@@ -1,13 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   return (
     <Link to={`/product/${product.id}`} className="block">
-      <div className="border rounded-lg shadow-md p-4 flex flex-col items-center 
+      <div
+        className="border rounded-lg shadow-md p-4 flex flex-col items-center 
                       bg-white dark:bg-gray-800 dark:border-gray-700 transition 
-                      hover:shadow-xl hover:scale-105 duration-300">
+                      hover:shadow-xl hover:scale-105 duration-300"
+      >
         <LazyLoad height={200} offset={100}>
           <img
             src={product.image}
